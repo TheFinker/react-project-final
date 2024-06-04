@@ -10,11 +10,13 @@ import {
   editCard,
   getCard,
   getCards,
+  getMyCards,
 } from "../services/cardsApiService";
 
 export default function useCards() {
   const [card, setCard] = useState(null);
   const [cards, setCards] = useState([]);
+  const [myCards, setMyCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
   const navigate = useNavigate();
@@ -29,6 +31,19 @@ export default function useCards() {
       const data = await getCards();
       setCards(data);
       setSnack("success", "All the cards are here");
+    } catch (err) {
+      setError(err.message);
+    }
+    setIsLoading(false);
+  }, [setSnack]);
+
+  const getAllMyCards = useCallback(async () => {
+    try {
+      setError(null);
+      setIsLoading(true);
+      const data = await getMyCards();
+      setMyCards(data);
+      setSnack("success", "All my cards are here");
     } catch (err) {
       setError(err.message);
     }
@@ -112,10 +127,12 @@ export default function useCards() {
   return {
     cards,
     card,
+    myCards,
     error,
     isLoading,
     getAllCards,
     getCardById,
+    getAllMyCards,
     handleCardDelete,
     handleCardLike,
     handleCreateCard,

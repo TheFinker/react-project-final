@@ -1,11 +1,11 @@
 import { useCallback, useState } from "react";
 import { useUser } from "../providers/UserProvider";
-import { login, signup } from "../services/usersApiService";
 import {
   getUser,
   removeToken,
   setTokenInLocalStorage,
 } from "../services/localStorageService";
+import { login, signup } from "../services/usersApiService";
 
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
@@ -35,6 +35,7 @@ const useUsers = () => {
   );
 
   const handleLogout = useCallback(() => {
+    navigate(ROUTES.ROOT);
     removeToken();
     setUser(null);
   }, [setUser]);

@@ -1,12 +1,14 @@
-import React from "react";
-import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
+import Favorite from "@mui/icons-material/Favorite";
 import InfoIcon from "@mui/icons-material/Info";
 import StyleIcon from "@mui/icons-material/Style";
+import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
-import Favorite from "@mui/icons-material/Favorite";
+import { useUser } from "../../users/providers/UserProvider";
 
 export default function Footer() {
+  const { user } = useUser();
   const navigate = useNavigate();
 
   return (
@@ -20,16 +22,20 @@ export default function Footer() {
           icon={<InfoIcon />}
           onClick={() => navigate(ROUTES.ABOUT)}
         />
-        <BottomNavigationAction
-          label="Favorites"
-          icon={<Favorite />}
-          onClick={() => navigate(ROUTES.FAV_CARDS)}
-        />
-        <BottomNavigationAction
-          label="Cards"
-          icon={<StyleIcon />}
-          onClick={() => navigate(ROUTES.CARDS)}
-        />
+        {user && (
+          <BottomNavigationAction
+            label="Favorites"
+            icon={<Favorite />}
+            onClick={() => navigate(ROUTES.FAV_CARDS)}
+          />
+        )}
+        {user && user.isBusiness && (
+          <BottomNavigationAction
+            label="Cards"
+            icon={<StyleIcon />}
+            onClick={() => navigate(ROUTES.CARDS)}
+          />
+        )}
       </BottomNavigation>
     </Paper>
   );
