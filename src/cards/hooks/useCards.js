@@ -1,16 +1,16 @@
 import { useCallback, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useAxios from "../../hooks/useAxios";
+import { useSnack } from "../../providers/SnackbarProvider";
+import ROUTES from "../../routes/routesModel";
+import normalizeCard from "../helpers/normalization/normalizeCard";
 import {
-  createCard,
   changeLikeStatus,
+  createCard,
   editCard,
   getCard,
   getCards,
 } from "../services/cardsApiService";
-import { useSnack } from "../../providers/SnackbarProvider";
-import { useNavigate } from "react-router-dom";
-import ROUTES from "../../routes/routesModel";
-import useAxios from "../../hooks/useAxios";
-import normalizeCard from "../helpers/normalization/normalizeCard";
 
 export default function useCards() {
   const [card, setCard] = useState(null);
@@ -91,27 +91,22 @@ export default function useCards() {
     console.log("you deleted card no" + id);
   }, []);
 
-  const handleCardLike = useCallback(async (id,user) => {
-    const userid=user._id
-    const response = await changeLikeStatus(id)
-
-    console.log("🚀 ~ handleCardLike ~ response:", response)
-    
-    if(response.status===200){
+  const handleCardLike = useCallback(async (id, user) => {
+    const response = await changeLikeStatus(id);
+    if (response.status === 200) {
       setCards((prevCards) =>
         prevCards.map((card) => {
           if (card._id === id) {
             if (!card.likes.includes(user._id)) {
               card.likes.push(user._id);
             } else {
-              card.likes=card.likes.filter((like) => like !== user._id);
+              card.likes = card.likes.filter((like) => like !== user._id);
             }
           }
           return card;
-        })
-      );
-        }
-    console.log("you liked card no" + id);
+        })
+      );
+    }
   }, []);
 
   return {

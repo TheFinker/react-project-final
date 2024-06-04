@@ -1,22 +1,23 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
-import ROUTES from "./routesModel";
+import { Route, Routes } from "react-router-dom";
+import AddCardPage from "../cards/pages/AddCardPage";
+import CardDetailsPage from "../cards/pages/CardDetailsPage";
 import CardsPage from "../cards/pages/CardsPage";
+import EditCardPage from "../cards/pages/EditCardPage";
+import FavoriteCardsPage from "../cards/pages/FavoriteCardsPage";
 import AboutPage from "../pages/AboutPage";
 import ErrorPage from "../pages/ErrorPage";
-import CardDetailsPage from "../cards/pages/CardDetailsPage";
-import SandBox from "../sandbox/SandBox";
-import Counter from "../sandbox/Counter";
-import LifeCycle from "../sandbox/LifeCycle";
-import Countries from "../sandbox/Countries";
-import Counter1 from "../sandbox/Counter1";
-import FormExample from "../sandbox/FormExample";
-import SignupPage from "../users/pages/SignupPage";
-import LoginPage from "../users/pages/LoginPage";
-import ParentComponent from "../sandbox/optimization/ParentComponent";
 import ParentComponentPage from "../sandbox/context/ParentComponentPage";
-import AddCardPage from "../cards/pages/AddCardPage";
-import EditCardPage from "../cards/pages/EditCardPage";
+import Counter from "../sandbox/Counter";
+import Counter1 from "../sandbox/Counter1";
+import Countries from "../sandbox/Countries";
+import FormExample from "../sandbox/FormExample";
+import LifeCycle from "../sandbox/LifeCycle";
+import ParentComponent from "../sandbox/optimization/ParentComponent";
+import SandBox from "../sandbox/SandBox";
+import LoginPage from "../users/pages/LoginPage";
+import SignupPage from "../users/pages/SignupPage";
+import ROUTES from "./routesModel";
 
 export default function Router() {
   return (
@@ -27,6 +28,7 @@ export default function Router() {
       <Route path={ROUTES.CARD_INFO + "/:id"} element={<CardDetailsPage />} />
       <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+      <Route path={ROUTES.FAV_CARDS} element={<FavoriteCardsPage />} />
       <Route path={ROUTES.CREATE_CARD} element={<AddCardPage />} />
       <Route path={ROUTES.EDIT_CARD + "/:id"} element={<EditCardPage />} />
 

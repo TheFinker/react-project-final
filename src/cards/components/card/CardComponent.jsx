@@ -1,13 +1,13 @@
-import React from "react";
 import { Card, CardActionArea } from "@mui/material";
+import React from "react";
 
-import CardHeaderComponent from "./CardHeaderComponent";
-import CardBody from "./CardBody";
-import CardActionBar from "./CardActionBar";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../../routes/routesModel";
+import CardActionBar from "./CardActionBar";
+import CardBody from "./CardBody";
+import CardHeaderComponent from "./CardHeaderComponent";
 
-import { UserContext, useUser } from "../../../users/providers/UserProvider";
+import { useUser } from "../../../users/providers/UserProvider";
 
 export default function CardComponent({
   card,
@@ -16,7 +16,6 @@ export default function CardComponent({
 }) {
   const navigate = useNavigate();
   const { user } = useUser();
-  // console.log("🚀 ~ user:", user)
   return (
     <Card sx={{ width: 250, m: 2 }}>
       <CardActionArea
@@ -35,7 +34,7 @@ export default function CardComponent({
         handleCardLike={handleCardLike}
         handleCardDelete={handleCardDelete}
         cardId={card._id}
-        isFavorite={card.likes.includes(user._id)}
+        isFavorite={user  ? card.likes.includes(user._id) : false}
         userId={card.user_id}
       />
     </Card>

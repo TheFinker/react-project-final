@@ -1,12 +1,12 @@
-import { Box, CardActions, IconButton } from "@mui/material";
-import React, {useContext} from "react";
-import DeleteIcon from "@mui/icons-material/Delete";
-import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import CallIcon from "@mui/icons-material/Call";
+import DeleteIcon from "@mui/icons-material/Delete";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { UserContext, useUser } from "../../../users/providers/UserProvider";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import { Box, CardActions, IconButton } from "@mui/material";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../../routes/routesModel";
+import { useUser } from "../../../users/providers/UserProvider";
 
 export default function CardActionBar({
   handleCardLike,
@@ -20,7 +20,6 @@ export default function CardActionBar({
   const navigate = useNavigate();
 
   const handleCardEdit = (id) => {
-    console.log("navigate to edit page for card " + id);
     navigate(ROUTES.EDIT_CARD + "/" + id);
   };
 
@@ -43,9 +42,10 @@ export default function CardActionBar({
         <IconButton>
           <CallIcon />
         </IconButton>
+        {user && 
         <IconButton onClick={() => handleCardLike(cardId,user)}>
           <FavoriteIcon sx={{ color: isFavorite ? 'red' : 'gray' }} />
-        </IconButton>
+        </IconButton>}
       </Box>
     </CardActions>
   );
