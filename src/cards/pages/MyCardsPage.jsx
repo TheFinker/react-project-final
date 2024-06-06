@@ -22,8 +22,8 @@ export default function MyCardsPage() {
   return (
     <div>
       <PageHeader
-        title="Cards"
-        subtitle="On this page you can find all bussines cards from all categories"
+        title="My Cards"
+        subtitle="On this page you can find all bussines cards you created"
       />
       <CardsFeedback
         cards={myCards}

@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 import PageHeader from "../../components/PageHeader";
 import { useUser } from "../../users/providers/UserProvider";
 
-import AddNewCardButton from "../components/AddNewCardButton";
 import CardsFeedback from "../components/CardsFeedback";
 import useCards from "../hooks/useCards";
 
@@ -32,7 +31,7 @@ export default function FavoriteCardsPage() {
     <div>
       <PageHeader
         title="Favorites Cards Page"
-        subtitle="Here you can find all your favorite business cards"
+        subtitle="Here you can find all your favorites business cards"
       />
       <CardsFeedback
         cards={favoritesCards}
@@ -41,7 +40,6 @@ export default function FavoriteCardsPage() {
         isLoading={isLoading}
         error={error}
       />
-      <AddNewCardButton />
     </div>
   );
 }
