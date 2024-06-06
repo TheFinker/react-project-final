@@ -1,20 +1,20 @@
-import React from "react";
-import useForm from "../../forms/hooks/useForm";
-import initialLoginForm from "../helpers/initialForms/initialLoginForm";
-import loginSchema from "../models/loginSchema";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import { Button, Grid, Typography } from "@mui/material";
 import Container from "@mui/material/Container";
+import React from "react";
+import { Link, Navigate } from "react-router-dom";
 import PageHeader from "../../components/PageHeader";
 import Form from "../../forms/components/Form";
-import ROUTES from "../../routes/routesModel";
 import Input from "../../forms/components/Input";
-import { useUser } from "../providers/UserProvider";
-import { Navigate, Link } from "react-router-dom";
-import { Button, Grid } from "@mui/material";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import useForm from "../../forms/hooks/useForm";
+import ROUTES from "../../routes/routesModel";
+import initialLoginForm from "../helpers/initialForms/initialLoginForm";
 import useUsers from "../hooks/useUsers";
+import loginSchema from "../models/loginSchema";
+import { useUser } from "../providers/UserProvider";
 
 export default function LoginPage() {
-  const { handleLogin } = useUsers();
+  const { handleLogin, error } = useUsers();
 
   const { data, errors, handleChange, handleReset, validateForm, onSubmit } =
     useForm(initialLoginForm, loginSchema, handleLogin);
@@ -62,6 +62,7 @@ export default function LoginPage() {
             data={data}
           />
           <Grid item xs={12}>
+          {error && <Typography color='red'> Invalid Username Or Password</Typography>}
             <Button
               variant="outlined"
               component={Link}

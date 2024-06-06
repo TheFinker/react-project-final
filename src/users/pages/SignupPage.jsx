@@ -1,16 +1,16 @@
-import React from "react";
-import useForm from "../../forms/hooks/useForm";
-import initialSignupForm from "../helpers/initialForms/initialSignupForm";
-import signupSchema from "../models/signupSchema";
 import Container from "@mui/material/Container";
-import SignupForm from "../components/SignupForm";
-import { useUser } from "../providers/UserProvider";
+import React from "react";
 import { Navigate } from "react-router-dom";
+import useForm from "../../forms/hooks/useForm";
 import ROUTES from "../../routes/routesModel";
+import SignupForm from "../components/SignupForm";
+import initialSignupForm from "../helpers/initialForms/initialSignupForm";
 import useUsers from "../hooks/useUsers";
+import signupSchema from "../models/signupSchema";
+import { useUser } from "../providers/UserProvider";
 
 export default function SignupPage() {
-  const { handleSignup } = useUsers();
+  const { handleSignup, error: signUpError} = useUsers();
 
   const {
     data,
@@ -40,6 +40,7 @@ export default function SignupPage() {
         validateForm={validateForm}
         title={"register form"}
         errors={errors}
+        signUpError={signUpError}
         data={data}
         onInputChange={handleChange}
         handleChangeCheckBox={handleChangeCheckBox}

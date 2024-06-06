@@ -1,5 +1,5 @@
-import React from "react";
 import TextField from "@mui/material/TextField";
+import React from "react";
 
 import Grid from "@mui/material/Grid";
 import { makeFirstLetterCapital } from "../utils/algoMethods";
@@ -12,6 +12,7 @@ const Input = ({
   label,
   required = true,
   error,
+  disabled, 
   onChange,
   ...rest
 }) => {
@@ -25,6 +26,7 @@ const Input = ({
         name={name}
         value={data[name] ? data[name] : ""}
         required={required}
+        disabled={disabled}
         helperText={error}
         error={Boolean(error)}
         onChange={onChange}

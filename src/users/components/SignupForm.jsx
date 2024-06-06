@@ -1,8 +1,8 @@
+import { Checkbox, FormControlLabel, Grid, Typography } from "@mui/material";
 import React from "react";
 import Form from "../../forms/components/Form";
-import ROUTES from "../../routes/routesModel";
 import Input from "../../forms/components/Input";
-import { Grid, FormControlLabel, Checkbox } from "@mui/material";
+import ROUTES from "../../routes/routesModel";
 
 export default function SignupForm({
   onSubmit,
@@ -10,6 +10,7 @@ export default function SignupForm({
   validateForm,
   title,
   errors,
+  signUpError,
   data,
   onInputChange,
   handleChangeCheckBox,
@@ -145,6 +146,7 @@ export default function SignupForm({
         required={false}
       />
       <Grid item>
+      {signUpError && <Typography color='red'>User Already Exists</Typography>}
         <FormControlLabel
           onChange={handleChangeCheckBox}
           name="isBusiness"

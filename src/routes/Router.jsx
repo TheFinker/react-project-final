@@ -17,6 +17,7 @@ import LifeCycle from "../sandbox/LifeCycle";
 import ParentComponent from "../sandbox/optimization/ParentComponent";
 import SandBox from "../sandbox/SandBox";
 import LoginPage from "../users/pages/LoginPage";
+import ProfilePage from "../users/pages/ProfilePage";
 import SignupPage from "../users/pages/SignupPage";
 import ROUTES from "./routesModel";
 
@@ -32,6 +33,7 @@ export default function Router() {
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route path={ROUTES.FAV_CARDS} element={<FavoriteCardsPage />} />
       <Route path={ROUTES.CREATE_CARD} element={<AddCardPage />} />
+      <Route path={ROUTES.USER_PROFILE} element={<ProfilePage />} />
       <Route path={ROUTES.EDIT_CARD + "/:id"} element={<EditCardPage />} />
 
       <Route path={ROUTES.SANDBOX} element={<SandBox />}>

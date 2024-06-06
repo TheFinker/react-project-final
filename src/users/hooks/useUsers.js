@@ -20,6 +20,7 @@ const useUsers = () => {
   const handleLogin = useCallback(
     async (userLogin) => {
       setIsLoading(true);
+      setError(null);
       try {
         const token = await login(userLogin);
         setTokenInLocalStorage(token);
@@ -43,6 +44,7 @@ const useUsers = () => {
   const handleSignup = useCallback(
     async (userFromClient) => {
       setIsLoading(true);
+      setError(null);
       try {
         const normalizedUser = normalizeUser(userFromClient);
         await signup(normalizedUser);

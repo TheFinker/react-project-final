@@ -1,10 +1,10 @@
-import React from "react";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import FormButton from "./FormButton";
-import { useNavigate } from "react-router-dom";
-import Typography from "@mui/material/Typography";
 import LoopIcon from "@mui/icons-material/Loop";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import FormButton from "./FormButton";
 
 const Form = ({
   title = "",
