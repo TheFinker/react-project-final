@@ -1,14 +1,25 @@
 import { Box, Container, Grid, TextField } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import useAxios from "../../hooks/useAxios";
 import { UserContext } from "../providers/UserProvider";
+import { getUserData } from "../services/usersApiService";
 
 export default function ProfilePage() {
-  const { user } = useContext(UserContext);
-//   TODO get user data
-//   const userData = getUserData(user._id);
-  
+  const { user, token } = useContext(UserContext);
+  const [currentUser, setCurrentUser] = useState();
+  useAxios();
+  const fetchUserData = async (existedUser) => {
+    const userData = await getUserData(existedUser._id);
+    setCurrentUser(userData);
+  };
 
-  if (!user) {
+  useEffect(() => {
+    if (user) {
+      fetchUserData(user);
+    }
+  }, [user]);
+
+  if (!user || !currentUser) {
     return <></>;
   }
 
@@ -30,7 +41,7 @@ export default function ProfilePage() {
         <Grid container spacing={1}>
           <Grid item xs={12} sm={6}>
             <TextField
-              value={user.first}
+              value={currentUser.name.first}
               fullWidth
               name="first"
               label="first name"
@@ -43,6 +54,7 @@ export default function ProfilePage() {
               fullWidth
               name="middle"
               label="middle name"
+              value={currentUser.name.middle}
               disabled
               sm={6}
               required={false}

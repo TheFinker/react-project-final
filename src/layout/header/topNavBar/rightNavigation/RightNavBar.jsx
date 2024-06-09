@@ -1,12 +1,13 @@
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
-import { Box, IconButton } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import { Box, IconButton, TextField } from "@mui/material";
 import React from "react";
+import { useTheme } from "../../../../providers/CustomThemeProvider";
 import { useUser } from "../../../../users/providers/UserProvider";
 import Logged from "./Logged";
-import NotLogged from "./NotLogged";
-import { useTheme } from "../../../../providers/CustomThemeProvider";
 import MoreButton from "./MoreButton";
+import NotLogged from "./NotLogged";
 
 export default function RightNavBar() {
   const { user } = useUser();
@@ -19,6 +20,16 @@ export default function RightNavBar() {
           alignItems: "center",
         }}
       >
+        <TextField
+          label="With normal TextField"
+          InputProps={{
+            endAdornment: (
+                <IconButton>
+                  <SearchIcon />
+                </IconButton>
+            ),
+          }}
+        />
         <IconButton sx={{ ml: 1 }} onClick={toggleDarkMode}>
           {isDark ? <LightModeIcon /> : <DarkModeIcon />}
         </IconButton>
