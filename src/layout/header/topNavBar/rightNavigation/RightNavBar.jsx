@@ -8,6 +8,7 @@ import { useUser } from "../../../../users/providers/UserProvider";
 import Logged from "./Logged";
 import MoreButton from "./MoreButton";
 import NotLogged from "./NotLogged";
+import SearchBar from './SearchBar';
 
 export default function RightNavBar() {
   const { user } = useUser();
@@ -20,16 +21,7 @@ export default function RightNavBar() {
           alignItems: "center",
         }}
       >
-        <TextField
-          label="With normal TextField"
-          InputProps={{
-            endAdornment: (
-                <IconButton>
-                  <SearchIcon />
-                </IconButton>
-            ),
-          }}
-        />
+        <SearchBar></SearchBar>
         <IconButton sx={{ ml: 1 }} onClick={toggleDarkMode}>
           {isDark ? <LightModeIcon /> : <DarkModeIcon />}
         </IconButton>

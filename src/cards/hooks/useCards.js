@@ -130,6 +130,7 @@ export default function useCards() {
     myCards,
     error,
     isLoading,
+    setCards,
     getAllCards,
     getCardById,
     getAllMyCards,
