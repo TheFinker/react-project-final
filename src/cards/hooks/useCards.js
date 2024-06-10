@@ -15,8 +15,8 @@ import {
 
 export default function useCards() {
   const [card, setCard] = useState(null);
+  const [myCards, setMyCards] = useState(null);
   const [cards, setCards] = useState([]);
-  const [myCards, setMyCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
   const navigate = useNavigate();
@@ -122,18 +122,18 @@ export default function useCards() {
         })
       );
     }
+    console.log("you liked card no" + id);
   }, []);
 
   return {
-    cards,
     card,
-    myCards,
+    cards,
     error,
     isLoading,
-    setCards,
+    myCards,
+    getAllMyCards,
     getAllCards,
     getCardById,
-    getAllMyCards,
     handleCardDelete,
     handleCardLike,
     handleCreateCard,

@@ -1,21 +1,20 @@
 import SearchIcon from "@mui/icons-material/Search";
-import { Box, IconButton, TextField } from "@mui/material";
-import { useState } from "react";
-import useCards from "../../../../cards/hooks/useCards";
+import { IconButton, TextField } from "@mui/material";
+import { useUser } from "../../../../users/providers/UserProvider";
 const SearchBar = ({ posts, setSearchResults }) => {
-  const [search, setSearch] = useState("");
-  const { cards, setCards } = useCards();
+  const { search, setSearch } = useUser();
 
-  const handleSearchChange = (event) => {
+  const handleSearchChange = async (event) => {
     setSearch(event.target.value);
-    setCards(cards.filter(card => card.title.includes(event.target.value)))
   };
+
   return (
     <>
       <TextField
         onChange={handleSearchChange}
         value={search}
         label="search.."
+        sx={{ backgroundColor: 'white'}}
         InputProps={{
           endAdornment: (
             <IconButton>

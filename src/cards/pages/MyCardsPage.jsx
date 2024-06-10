@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import PageHeader from "../../components/PageHeader";
+import { useUser } from "../../users/providers/UserProvider";
 
 import AddNewCardButton from "../components/AddNewCardButton";
 import CardsFeedback from "../components/CardsFeedback";
@@ -14,6 +15,7 @@ export default function MyCardsPage() {
     handleCardLike,
     handleCardDelete,
   } = useCards();
+  const { search } = useUser();
 
   useEffect(() => {
     getAllMyCards();
@@ -26,7 +28,7 @@ export default function MyCardsPage() {
         subtitle="On this page you can find all bussines cards you created"
       />
       <CardsFeedback
-        cards={myCards}
+        cards={myCards?.filter((card) => card.title.includes(search))}
         handleDelete={handleCardDelete}
         handleLike={handleCardLike}
         isLoading={isLoading}
