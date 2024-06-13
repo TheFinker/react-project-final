@@ -17,6 +17,7 @@ export default function FavoriteCardsPage() {
     handleCardLike,
     handleCardDelete,
   } = useCards();
+  const { search } = useUser();
 
   useEffect(() => {
     getAllCards();
@@ -34,7 +35,7 @@ export default function FavoriteCardsPage() {
         subtitle="Here you can find all your favorites business cards"
       />
       <CardsFeedback
-        cards={favoritesCards}
+        cards={favoritesCards?.filter((card) => card.title.includes(search))}
         handleDelete={handleCardDelete}
         handleLike={handleCardLike}
         isLoading={isLoading}
