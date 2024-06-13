@@ -14,6 +14,7 @@ const Input = ({
   error,
   disabled, 
   onChange,
+  value,
   ...rest
 }) => {
   return (

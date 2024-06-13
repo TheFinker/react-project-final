@@ -18,9 +18,9 @@ export default function Footer() {
       sx={{ position: "sticky", bottom: 0, left: 0, right: 0 }}
     >
       <BottomNavigation showLabels>
-      <BottomNavigationAction
+        <BottomNavigationAction
           label="Home"
-          icon={<Home/>}
+          icon={<Home />}
           onClick={() => navigate(ROUTES.CARDS)}
         />
         <BottomNavigationAction
@@ -35,13 +35,13 @@ export default function Footer() {
             onClick={() => navigate(ROUTES.FAV_CARDS)}
           />
         )}
-        {user && user.isBusiness||user && user.isAdmin && (
-          <BottomNavigationAction
-            label="My Cards"
-            icon={<StyleIcon />}
-            onClick={() => navigate(ROUTES.MY_CARDS)}
-          />
-        )}
+        {(user && (user.isBusiness || user.isAdmin) && (
+            <BottomNavigationAction
+              label="My Cards"
+              icon={<StyleIcon />}
+              onClick={() => navigate(ROUTES.MY_CARDS)}
+            />
+          ))}
       </BottomNavigation>
     </Paper>
   );

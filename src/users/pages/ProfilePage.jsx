@@ -22,6 +22,14 @@ export default function ProfilePage() {
   if (!user || !currentUser) {
     return <></>;
   }
+  var usertype=""
+  if (currentUser.isAdmin) {
+    usertype = "Admin";
+  } else if (currentUser.isBusiness) {
+    usertype = "Business";
+  } else {
+    usertype = "Regular";
+  }
 
   return (
     <Container
@@ -62,6 +70,7 @@ export default function ProfilePage() {
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
+              value={currentUser.name.last}
               fullWidth
               name="last"
               label="last name"
@@ -71,6 +80,7 @@ export default function ProfilePage() {
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
+              value={currentUser.phone}
               fullWidth
               name="phone"
               label="phone"
@@ -81,6 +91,7 @@ export default function ProfilePage() {
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
+              value={currentUser.email}
               fullWidth
               name="email"
               label="email"
@@ -89,18 +100,10 @@ export default function ProfilePage() {
               sm={6}
             />
           </Grid>
+
           <Grid item xs={12} sm={6}>
             <TextField
-              fullWidth
-              name="password"
-              label="password"
-              type="password"
-              disabled
-              sm={6}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
+              value={currentUser.image.url}
               fullWidth
               name="url"
               label="image url"
@@ -111,6 +114,7 @@ export default function ProfilePage() {
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
+              value={currentUser.image.alt}
               fullWidth
               name="alt"
               label="image alt"
@@ -121,6 +125,7 @@ export default function ProfilePage() {
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
+              value={currentUser.address.state}
               fullWidth
               name="state"
               label="state"
@@ -131,6 +136,7 @@ export default function ProfilePage() {
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
+              value={currentUser.address.country}
               fullWidth
               label="country"
               name="country"
@@ -139,13 +145,18 @@ export default function ProfilePage() {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField fullWidth name="city" label="city" disabled sm={6} />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField fullWidth name="street" label="street" disabled sm={6} />
+            <TextField
+              value={currentUser.address.city}
+              fullWidth name="city" label="city" disabled sm={6} />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
+            value={currentUser.address.street}
+            fullWidth name="street" label="street" disabled sm={6} />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+            value={currentUser.address.houseNumber}
               fullWidth
               name="houseNumber"
               label="house Number"
@@ -156,9 +167,21 @@ export default function ProfilePage() {
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
+            value={currentUser.address.zip}
               fullWidth
               name="zip"
               label="zip"
+              disabled
+              sm={6}
+              required={false}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              value={usertype}
+              fullWidth
+              name="usertype"
+              label="user type"
               disabled
               sm={6}
               required={false}

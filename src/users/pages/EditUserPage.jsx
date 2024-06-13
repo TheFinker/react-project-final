@@ -1,11 +1,11 @@
 import Container from "@mui/material/Container";
 import React from "react";
 import useForm from "../../forms/hooks/useForm";
-import SignupForm from "../components/SignupForm";
 import initialSignupForm from "../helpers/initialForms/initialSignupForm";
 import useUsers from "../hooks/useUsers";
 import signupSchema from "../models/signupSchema";
 import { useUser } from "../providers/UserProvider";
+import EditUserForm from "../components/EditUserForm";
 
 export default function EditUserPage() {
   const { handleEditUser, error: signUpError} = useUsers();
@@ -32,7 +32,7 @@ export default function EditUserPage() {
         alignItems: "center",
       }}
     >
-      <SignupForm
+      <EditUserForm
         onSubmit={onSubmit}
         onReset={handleReset}
         validateForm={validateForm}

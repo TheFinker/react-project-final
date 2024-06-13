@@ -35,7 +35,7 @@ export default function CardsPage() {
         error={error}
       />
 
-{user && user.isBusiness||user && user.isAdmin &&<AddNewCardButton />}
+{(user && (user.isBusiness || user.isAdmin) &&<AddNewCardButton />)}
     </div>
   );
 }

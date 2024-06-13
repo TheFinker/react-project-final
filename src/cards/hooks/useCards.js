@@ -7,6 +7,7 @@ import normalizeCard from "../helpers/normalization/normalizeCard";
 import {
   changeLikeStatus,
   createCard,
+  deleteCard,
   editCard,
   getCard,
   getCards,
@@ -104,6 +105,7 @@ export default function useCards() {
   );
 
   const handleCardDelete = useCallback((id) => {
+    deleteCard(id)
     console.log("you deleted card no" + id);
   }, []);
 

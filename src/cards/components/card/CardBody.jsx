@@ -11,11 +11,17 @@ export default function CardBody({
   card,
 }) {
   return (
+    
     <>
       <CardHeader title={title} subheader={subtitle} />
 
       <Divider variant="middle" />
       <CardContent>
+      {showCardDetails && (
+            <Typography variant="body2" color="text.secondary">
+            <strong>description: </strong>
+            {card.description}
+          </Typography>)}
         <Typography variant="body2" color="text.secondary">
           <strong>Phone: </strong>
           {phone}
@@ -31,8 +37,8 @@ export default function CardBody({
               {address.country}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              •<strong>City: </strong>
-              {address.city}
+              •<strong>State: </strong>
+              {address.state}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               •<strong>Zip: </strong>
@@ -54,9 +60,14 @@ export default function CardBody({
               <strong>Web: </strong>
               <Link>{card.web}</Link>
             </Typography>
+            <Typography variant="body2" color="text.secondary">
+              <strong>Date of creation: </strong>
+              {card.createdAt}
+            </Typography>
           </>
         )}
       </CardContent>
+      
     </>
   );
 }
