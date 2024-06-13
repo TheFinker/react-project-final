@@ -16,6 +16,7 @@ import FormExample from "../sandbox/FormExample";
 import LifeCycle from "../sandbox/LifeCycle";
 import ParentComponent from "../sandbox/optimization/ParentComponent";
 import SandBox from "../sandbox/SandBox";
+import EditUserPage from "../users/pages/EditUserPage";
 import LoginPage from "../users/pages/LoginPage";
 import ProfilePage from "../users/pages/ProfilePage";
 import SignupPage from "../users/pages/SignupPage";
@@ -29,6 +30,7 @@ export default function Router() {
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
       <Route path={ROUTES.MY_CARDS} element={<MyCardsPage />} />
       <Route path={ROUTES.CARD_INFO + "/:id"} element={<CardDetailsPage />} />
+      <Route path={ROUTES.EDIT_USER} element={<EditUserPage />} />
       <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route path={ROUTES.FAV_CARDS} element={<FavoriteCardsPage />} />

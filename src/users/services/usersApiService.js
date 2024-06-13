@@ -21,6 +21,15 @@ export const signup = async (normalizedUser) => {
   }
 };
 
+export const userEdit = async (userData) => {
+  try {
+    const { data } = await axios.put(apiUrl + `/${userData.id}`, userData);
+    return data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 export const getUserData = async (id) => {
   try {
     const { data } = await axios.get(`${apiUrl}/${id}`);

@@ -5,7 +5,7 @@ import {
   removeToken,
   setTokenInLocalStorage,
 } from "../services/localStorageService";
-import { login, signup } from "../services/usersApiService";
+import { login, signup, userEdit } from "../services/usersApiService";
 
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
@@ -60,7 +60,29 @@ const useUsers = () => {
     [handleLogin]
   );
 
-  return { isLoading, error, handleLogin, handleLogout, handleSignup };
+  const handleEditUser = useCallback(async (userFromClient) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const normalizedUser = normalizeUser(userFromClient);
+
+      await userEdit(normalizedUser);
+      // setUser(normalizedUser) user._id
+      // await signup(normalizedUser);
+    } catch (error) {
+      setError(error.message);
+    }
+    setIsLoading(false);
+  }, []);
+
+  return {
+    isLoading,
+    error,
+    handleLogin,
+    handleLogout,
+    handleSignup,
+    handleEditUser,
+  };
 };
 
 export default useUsers;

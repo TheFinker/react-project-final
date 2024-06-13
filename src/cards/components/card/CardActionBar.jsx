@@ -13,6 +13,7 @@ export default function CardActionBar({
   handleCardDelete,
   cardId,
   isFavorite,
+  likes,
   userId,
 }) {
   const { user } = useUser();
@@ -44,7 +45,7 @@ export default function CardActionBar({
         </IconButton>
         {user && 
         <IconButton onClick={() => handleCardLike(cardId,user)}>
-          <FavoriteIcon sx={{ color: isFavorite ? 'red' : 'gray' }} />
+          {likes.length}<FavoriteIcon sx={{ color: isFavorite ? 'red' : 'gray' }} />
         </IconButton>}
       </Box>
     </CardActions>

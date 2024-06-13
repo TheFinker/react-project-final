@@ -13,16 +13,22 @@ export default function CardComponent({
   card,
   handleCardLike,
   handleCardDelete,
+  showCardDetails,
 }) {
   const navigate = useNavigate();
   const { user } = useUser();
   return (
-    <Card sx={{ width: 250, m: 2 }}>
+    <Card sx={{ width: showCardDetails ? 450 : 250, m: 2 }}>
       <CardActionArea
         onClick={() => navigate(ROUTES.CARD_INFO + "/" + card._id)}
       >
-        <CardHeaderComponent image={card.image} />
+        <CardHeaderComponent
+          showCardDetails={showCardDetails}
+          image={card.image}
+        />
         <CardBody
+          showCardDetails={showCardDetails}
+          card={card}
           title={card.title}
           subtitle={card.subtitle}
           phone={card.phone}
@@ -31,10 +37,11 @@ export default function CardComponent({
         />
       </CardActionArea>
       <CardActionBar
+        likes={card.likes}
         handleCardLike={handleCardLike}
         handleCardDelete={handleCardDelete}
         cardId={card._id}
-        isFavorite={user  ? card.likes.includes(user._id) : false}
+        isFavorite={user ? card.likes.includes(user._id) : false}
         userId={card.user_id}
       />
     </Card>

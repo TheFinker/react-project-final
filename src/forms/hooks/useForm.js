@@ -1,7 +1,12 @@
-import { useCallback, useState } from "react";
 import Joi from "joi";
+import { useCallback, useState } from "react";
 
-export default function useForm(initialForm, schema, handleSubmit) {
+export default function useForm(
+  initialForm,
+  schema,
+  handleSubmit,
+  handleEditUser
+) {
   const [data, setData] = useState(initialForm);
   const [errors, setErrors] = useState({});
 
@@ -72,8 +77,12 @@ export default function useForm(initialForm, schema, handleSubmit) {
   }, [data, schema]);
 
   const onSubmit = useCallback(() => {
-    handleSubmit(data);
-  }, [handleSubmit, data]);
+    if (handleSubmit) {
+      handleSubmit(data);
+    } else {
+      handleEditUser(data);
+    }
+  }, [handleSubmit, handleEditUser, data]);
 
   return {
     data,

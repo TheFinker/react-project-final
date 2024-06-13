@@ -1,10 +1,10 @@
+import Box from "@mui/material/Box";
 import MuiMenu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import Box from "@mui/material/Box";
-import ROUTES from "../../../../routes/routesModel";
-import { useUser } from "../../../../users/providers/UserProvider";
-import useUsers from "../../../../users/hooks/useUsers";
 import MenuLink from "../../../../routes/components/MenuLink";
+import ROUTES from "../../../../routes/routesModel";
+import useUsers from "../../../../users/hooks/useUsers";
+import { useUser } from "../../../../users/providers/UserProvider";
 
 export default function Menu({ isOpen, anchorEl, onClose }) {
   const { user } = useUser();
@@ -67,7 +67,7 @@ export default function Menu({ isOpen, anchorEl, onClose }) {
               navigateTo={ROUTES.EDIT_USER}
               onClick={onClose}
             />
-            <MenuItem onClick={onLogout}>Logout</MenuItem>
+            <MenuItem onClick={onLogout} sx={{color: 'red'}}>Logout</MenuItem>
           </>
         )}
       </Box>
